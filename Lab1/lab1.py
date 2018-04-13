@@ -109,14 +109,12 @@ def zad7():
     i = 0
     while 0xFF != ord('q'):
         name = str(i) + '.jpg'
-        print(name)
         img = cv2.imread(name, cv2.IMREAD_COLOR)
         cv2.imshow('1', img)
         if  cv2.waitKey(1) & 0xFF == ord('n'):
             if i < 3 :
                 cv2.destroyAllWindows()
                 i= i+1
-                print(i)
             else:
                 cv2.destroyAllWindows()
                 i = 0
