@@ -1,11 +1,8 @@
 import cv2
-import numpy as np
-
 
 def zad1():
     cap = cv2.VideoCapture(0)
     key = ord('a')
-
     while key != ord('q'):
         ret, frame = cap.read()
         img_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -54,6 +51,9 @@ def zad3_b():
 
 
 def zad4():
+    """
+    Zapisuje caly obraz z kamery
+    """
     cap = cv2.VideoCapture(0)
     fourcc = cv2.VideoWriter_fourcc(*'DIVX')
     out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640,480))
@@ -67,37 +67,48 @@ def zad4():
     out.release()
     cv2.destroyAllWindows()
 
-
-def zad5():
+def zad4_b():
+    """
+    Zapisuje klatkę po wciśnięciu spacji
+    :return:
+    """
     cap = cv2.VideoCapture(0)
     fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-    out = cv2.VideoWriter('out.avi', fourcc, 20.0, (640, 480))
-    while (cap.isOpened()):
+    out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640,480))
+    while(cap.isOpened()):
         ret, frame = cap.read()
         cv2.imshow('frame', frame)
-        if cv2.waitKey(1) & 0xFF == ord('s'):
+        if cv2.waitKey(1) & 0xFF == ord(' '):
             out.write(frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        elif cv2.waitKey(1) & 0xFF == ord('q'):
             break
     cap.release()
     out.release()
     cv2.destroyAllWindows()
 
 
-def zad6():
+def zad5():
     img_c = cv2.imread('flaming.jpeg', cv2.IMREAD_COLOR)
-    img = cv2.rectangle(img_c, (384,0),(510,128),(0,255,0),3)
+    # (0,200,0 ) -> color BGP
+    # 10 -> grubość
+    # (200,180) -> wsporzedna lewego gornego rogu
+    # (320,350) -> wsporzedna prawego dolnego rogu
+
+    img = cv2.rectangle(img_c, (200,180),(320,350),(0,200,0),10)
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(img, 'Umiem obrazy!', (50,50), font, 4, (255,255,255), 2, cv2.LINE_AA )
+    # (80,800) -> wsporzedna pierwszej literki
+    #(0,255,255) -? kolor napisu
+    # 2 - wielkośc czcionki
+    # 10 - grubosc
+    cv2.putText(img, 'Umiem obrazy!', (80,800), font, 2, (0,255,255), 10, cv2.LINE_AA )
     cv2.imshow('flaming gray', img)
     key = cv2.waitKey(0)
     if key == 27:
         cv2.destroyAllWindows()
 
 
-def zad7():
+def zad6():
     cap = cv2.VideoCapture('Wildlife.mp4')
-
     while (cap.isOpened()):
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -110,6 +121,25 @@ def zad7():
     cap.release()
     cv2.destroyAllWindows()
 
+def zad7():
+    i = 0
+    while 0xFF != ord('q'):
+        name = str(i) + '.jpg'
+        print(name)
+        img = cv2.imread(name, cv2.IMREAD_COLOR)
+        cv2.imshow('1', img)
+        if  cv2.waitKey(1) & 0xFF == ord('n'):
+            if i < 3 :
+                cv2.destroyAllWindows()
+                i= i+1
+                print(i)
+            else:
+                cv2.destroyAllWindows()
+                i = 0
+    cv2.destroyAllWindows()
+
+
 
 if __name__ == '__main__':
-    zad7()
+    zad1()
+
