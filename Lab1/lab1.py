@@ -51,9 +51,6 @@ def zad3_b():
 
 
 def zad4():
-    """
-    Zapisuje caly obraz z kamery
-    """
     cap = cv2.VideoCapture(0)
     fourcc = cv2.VideoWriter_fourcc(*'DIVX')
     out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640,480))
@@ -68,10 +65,6 @@ def zad4():
     cv2.destroyAllWindows()
 
 def zad4_b():
-    """
-    Zapisuje klatkę po wciśnięciu spacji
-    :return:
-    """
     cap = cv2.VideoCapture(0)
     fourcc = cv2.VideoWriter_fourcc(*'DIVX')
     out = cv2.VideoWriter('output.avi', fourcc, 20.0, (640,480))
@@ -89,17 +82,8 @@ def zad4_b():
 
 def zad5():
     img_c = cv2.imread('flaming.jpeg', cv2.IMREAD_COLOR)
-    # (0,200,0 ) -> color BGP
-    # 10 -> grubość
-    # (200,180) -> wsporzedna lewego gornego rogu
-    # (320,350) -> wsporzedna prawego dolnego rogu
-
     img = cv2.rectangle(img_c, (200,180),(320,350),(0,200,0),10)
     font = cv2.FONT_HERSHEY_SIMPLEX
-    # (80,800) -> wsporzedna pierwszej literki
-    #(0,255,255) -? kolor napisu
-    # 2 - wielkośc czcionki
-    # 10 - grubosc
     cv2.putText(img, 'Umiem obrazy!', (80,800), font, 2, (0,255,255), 10, cv2.LINE_AA )
     cv2.imshow('flaming gray', img)
     key = cv2.waitKey(0)
@@ -125,14 +109,12 @@ def zad7():
     i = 0
     while 0xFF != ord('q'):
         name = str(i) + '.jpg'
-        print(name)
         img = cv2.imread(name, cv2.IMREAD_COLOR)
         cv2.imshow('1', img)
         if  cv2.waitKey(1) & 0xFF == ord('n'):
             if i < 3 :
                 cv2.destroyAllWindows()
                 i= i+1
-                print(i)
             else:
                 cv2.destroyAllWindows()
                 i = 0
