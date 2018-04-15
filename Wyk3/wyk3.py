@@ -11,7 +11,6 @@ import numpy as np
 def detect_line_canny():
     """
     Wykyrwanie krawddzi przy pomocy algorytmu Canny'egp
-    :return:
     """
     img = cv2.imread('2.jpeg')
     cv2.imshow('image', img)
@@ -101,8 +100,6 @@ def descriptor_LBP():
 def descriptor_HoG():
     """
     Deskryptor Histograms of OrientedGradients
-    - gradienty są liczone w równomiernie rozmieszczonych fragmentach obrazu.
-    :return:
     """
 
     img = color.rgb2gray(data.astronaut())
