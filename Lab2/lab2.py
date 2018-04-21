@@ -240,11 +240,11 @@ def zad5():
     time3 = (e32 - e3) / cv2.getTickFrequency()
     time4 = (e42 - e4) / cv2.getTickFrequency()
     time5 = (e52 - e5) / cv2.getTickFrequency()
-    print("Time scale: ", (time1 * 1000), " milisekonds")
-    print("Time linear: ", (time2 * 1000), " milisekonds")
-    print("Time nearest: ", (time3 * 1000), " milisekonds")
-    print("Time area: ", (time4 * 1000), " milisekonds")
-    print("Time lanczos4: ", (time5 * 1000), " milisekonds")
+    print("Time scale: ", (time1 * 1000), " miliseconds")
+    print("Time linear: ", (time2 * 1000), " miliseconds")
+    print("Time nearest: ", (time3 * 1000), " miliseconds")
+    print("Time area: ", (time4 * 1000), " miliseconds")
+    print("Time lanczos4: ", (time5 * 1000), " miliseconds")
 
 
 
