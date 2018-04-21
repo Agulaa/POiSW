@@ -215,40 +215,58 @@ def zad4_2():
 def zad5():
     img = cv2.imread('qr.jpg')
 
-    e1 = cv2.getTickCount()
+    t1 = cv2.getTickCount()
     img_scale = cv2.resize(img, (0, 0), fx=1.75, fy=1.75)
-    e12 = cv2.getTickCount()
+    t12 = cv2.getTickCount()
 
-    e2 = cv2.getTickCount()
+    t2 = cv2.getTickCount()
     linear = cv2.resize(img, (0, 0), fx=1.75, fy=1.75, interpolation=cv2.INTER_LINEAR)
-    e22 = cv2.getTickCount()
+    t22 = cv2.getTickCount()
 
-    e3 = cv2.getTickCount()
+    t3 = cv2.getTickCount()
     nearest = cv2.resize(img, (0, 0), fx=1.75, fy=1.75, interpolation=cv2.INTER_NEAREST)
-    e32 = cv2.getTickCount()
+    t32 = cv2.getTickCount()
 
-    e4 = cv2.getTickCount()
+    t4 = cv2.getTickCount()
     area = cv2.resize(img, (0, 0), fx=1.75, fy=1.75, interpolation=cv2.INTER_AREA)
-    e42 = cv2.getTickCount()
+    t42 = cv2.getTickCount()
 
-    e5 = cv2.getTickCount()
+    t5 = cv2.getTickCount()
     lanczos4 = cv2.resize(img, (0, 0), fx=1.75, fy=1.75, interpolation=cv2.INTER_LANCZOS4)
-    e52 = cv2.getTickCount()
+    t52 = cv2.getTickCount()
 
-    time1 = (e12 - e1) / cv2.getTickFrequency()
-    time2 = (e22 - e2) / cv2.getTickFrequency()
-    time3 = (e32 - e3) / cv2.getTickFrequency()
-    time4 = (e42 - e4) / cv2.getTickFrequency()
-    time5 = (e52 - e5) / cv2.getTickFrequency()
-    print("Time scale: ", (time1 * 1000), " milisekonds")
-    print("Time linear: ", (time2 * 1000), " milisekonds")
-    print("Time nearest: ", (time3 * 1000), " milisekonds")
-    print("Time area: ", (time4 * 1000), " milisekonds")
-    print("Time lanczos4: ", (time5 * 1000), " milisekonds")
+    time_1 = (t12 - t1) / cv2.getTickFrequency()
+    time_2 = (t22 - t2) / cv2.getTickFrequency()
+    time_3 = (t32 - t3) / cv2.getTickFrequency()
+    time_4 = (t42 - t4) / cv2.getTickFrequency()
+    time_5 = (t52 - t5) / cv2.getTickFrequency()
+
+    print("Time scale: ", (time_1 * 1000), " miliseconds")
+    print("Time linear: ", (time_2 * 1000), " miliseconds")
+    print("Time nearest: ", (time_3 * 1000), " miliseconds")
+    print("Time area: ", (time_4 * 1000), " miliseconds")
+    print("Time lanczos4: ", (time_5 * 1000), " miliseconds")
 
 
+def zad6():
+    img = cv2.imread('flaming.jpeg')
+    cv2.imshow('input', img)
+
+    help = np.zeros(img.shape, np.uint8)
+    _,_,z=img.shape
+
+    if z==3:
+        help[:] = [255, 255, 255]
+    else:
+        help[:] = [255]
+
+    negative = help - img
+
+    cv2.imshow('output', negative)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
 
 if __name__ == '__main__':
-    zad5()
+    zad6()
