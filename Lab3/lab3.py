@@ -363,7 +363,7 @@ def zad4():
             break
     cv2.destroyAllWindows()
 
-def change_perspective_():
+def change_perspective():
     img = cv2.imread('droga.jpg')
     cv2.imshow('1', img )
     img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
@@ -400,4 +400,4 @@ def zad4_1():
     cv2.destroyAllWindows()
 
 if __name__ == '__main__':
-   change_perspective_()
+   change_perspective()
