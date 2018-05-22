@@ -363,41 +363,44 @@ def zad4():
             break
     cv2.destroyAllWindows()
 
-def change_perspective():
+def zad4_road():
+    perspective = []
     img = cv2.imread('droga.jpg')
-    cv2.imshow('1', img )
-    img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 
-    src = np.float32([[540, 466], [687, 466], [0, 763], [1226, 765]]) # lewy górny róg, prawy górny, lewy dolny, prawy górny
-    dst = np.float32([[0, 0], [600, 0], [0, 700], [600, 700]])
-    T = cv2.getPerspectiveTransform(src, dst)
-    warped = cv2.warpPerspective(img, T, (600, 700))
+    def change_perspective_zad4():
+        if len(perspective) == 4:
+            src = np.float32([perspective[0], perspective[1], perspective[2],
+                              perspective[3]])  # lewy górny róg, prawy górny, lewy dolny, prawy górny
+            dst = np.float32([[0, 0], [600, 0], [0, 700], [600, 700]])
+            T = cv2.getPerspectiveTransform(src, dst)
+            warped = cv2.warpPerspective(img, T, (600, 700))
 
-    plt.subplot(1, 2, 1)
-    plt.imshow(img)
-    plt.title('Input')
-    plt.subplot(1,2,2)
-    plt.imshow(warped)
-    plt.title('Output')
-    plt.show()
+            plt.subplot(1, 2, 1)
+            plt.imshow(img)
+            plt.title('Input')
+            plt.subplot(1, 2, 2)
+            plt.imshow(warped)
+            plt.title('Output')
+            plt.show()
 
+    def draw_dot(event, x, y, flags, param):
+        if event == cv2.EVENT_LBUTTONDBLCLK:
+            cv2.circle(img, (x, y), 5, (200, 25, 25), -1)
+            print([x,y])
+            perspective.append([x,y])
+            if len(perspective) == 4:
+                 change_perspective_zad4()
 
-def zad4_1():
-
-    def draw_dot(event,x,y,flags,param):
-
-            if event == cv2.EVENT_LBUTTONDBLCLK:
-                cv2.circle(img,(x,y), 5,(200,25,25),-1)
-
-    img = cv2.imread('droga.jpg')
     cv2.namedWindow('image')
     cv2.setMouseCallback('image', draw_dot)
-
     while (1):
         cv2.imshow('image', img)
         if cv2.waitKey(20) & 0xFF == 27:
             break
     cv2.destroyAllWindows()
+
+
+
 
 if __name__ == '__main__':
    change_perspective()
